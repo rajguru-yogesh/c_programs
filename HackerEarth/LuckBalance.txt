@@ -1,0 +1,25 @@
+int luckBalance(int k, vector<vector<int>> contests) {
+    int maxluck = 0,ImpContests = 0,HaveToWin = 0;
+    sort(contests.begin(),contests.end());
+    
+    for(int i = 1 ;i < contests[0].size();i++){
+        for(int j = 0 ;j < contests.size();j++){
+            if(contests[j][i] == 1){
+                ImpContests++;
+            }     
+        }
+    }
+    HaveToWin = ImpContests - k;
+    for(int i = 0 ;i < contests[0].size() - 1;i++){
+        for(int j = 0 ;j < contests.size();j++){
+             if(HaveToWin > 0 && contests[j][i+1] == 1){
+                 maxluck = maxluck - contests[j][i];
+                 HaveToWin--;
+             }
+             else{
+                 maxluck = maxluck + contests[j][i];
+             }    
+        }
+    }
+return maxluck;
+}
