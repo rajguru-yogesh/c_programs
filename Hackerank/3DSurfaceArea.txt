@@ -1,0 +1,61 @@
+// Complete the surfaceArea function below.
+int surfaceArea(vector<vector<int>> A) {
+    int front = 0,left = 0, right = 0,back = 0;
+        for(int i = 0 ; i < A.size() ;i++ ){
+            for(int j = 0 ; j < A[0].size() ;j++){
+                //Calculates front side surface area..
+                if(i == 0){
+                    //Corner pieces..
+                    front = front + A[i][j];
+                }
+                else{
+                    if((A[i][j] - A[i - 1][j]) <= 0){
+                        front = front + 0;
+                    }
+                    else{
+                        front = front + (A[i][j] - A[i - 1][j]);
+                    }
+                }
+                //Calculates left side surface area..
+                if(j == 0){
+                    //Corner pieces..
+                    left = left + A[i][j];
+                }
+                else{
+                    if((A[i][j] - A[i][j - 1]) <= 0){
+                        left = left + 0;
+                    }
+                    else{
+                        left = left + (A[i][j] - A[i][j - 1]);
+                    }
+                }
+                //Calculates right side surface area..
+                if(j == A[0].size() - 1){
+                    //Corner pieces..
+                    right = right + A[i][j];
+                }
+                else{
+                    if((A[i][j] - A[i][j + 1]) <= 0){
+                        right = right + 0;
+                    }
+                    else{
+                        right = right + (A[i][j] - A[i][j + 1]);
+                    }
+                }
+                //Calculates back side surface area..
+                if(i == A.size() - 1){
+                    //Corner pieces..
+                    back = back + A[i][j];
+                }
+                else{
+                    if((A[i][j] - A[i + 1][j]) <= 0){
+                        back = back + 0;
+                    }
+                    else{
+                        back = back + (A[i][j] - A[i + 1][j]);
+                    }
+                }
+            }
+        }
+    return (A.size()*A[0].size()*2 + front + left + right + back);
+}
